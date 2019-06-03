@@ -1,10 +1,6 @@
 package dictionarygenerator;
 
-import javafx.stage.DirectoryChooser;
-import javafx.stage.Stage;
-
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
@@ -16,10 +12,9 @@ public class Dictionary {
     private final String fileName;
     private final String dirPath;
     private final String fileExtension;
-    private int count = 1;
-    
-    public final Path dictionaryPath;
-    public final BufferedWriter bufferedWriter;
+
+    private final Path dictionaryPath;
+    private BufferedWriter bufferedWriter;
     
     public Dictionary() throws IOException{
         this.fileName = PropertiesFile.getFileName();
@@ -31,17 +26,11 @@ public class Dictionary {
         this.bufferedWriter = Files.newBufferedWriter(dictionaryPath);
     }
 
-    public static String choosePath (Stage primaryStage) {
-        DirectoryChooser chooser = new DirectoryChooser();
-        chooser.setTitle("Choose your dictionary directory");
-        File defaultDirectory = new File(PropertiesFile.getDirectoryPath());
-        chooser.setInitialDirectory(defaultDirectory);
-        File selectedDirectory = chooser.showDialog(primaryStage);
-        if (selectedDirectory != null) {
-            return selectedDirectory.getPath();
-        } else {
-            return "";
-        }
+    public Path getDictionaryPath() {
+        return dictionaryPath;
+    }
+    public BufferedWriter getBufferedWriter() {
+        return bufferedWriter;
     }
 
     private void dirCreate() {
@@ -54,6 +43,7 @@ public class Dictionary {
 
     private Path fileCreate() {
         String index = "";
+        int count = 2;
         while (true) {
             try {
                 Path filePath = Files.createFile(Paths.get(dirPath, fileName + index + fileExtension));
