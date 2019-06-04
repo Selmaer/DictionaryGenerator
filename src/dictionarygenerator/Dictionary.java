@@ -1,6 +1,7 @@
 package dictionarygenerator;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
@@ -13,8 +14,8 @@ public class Dictionary {
     private final String dirPath;
     private final String fileExtension;
 
-    private final Path dictionaryPath;
-    private BufferedWriter bufferedWriter;
+    private final File DICTIONARY;
+
     
     public Dictionary() throws IOException{
         this.fileName = PropertiesFile.getFileName();
@@ -22,15 +23,11 @@ public class Dictionary {
         this.dirPath = PropertiesFile.getDirectoryPath();
 
         dirCreate();
-        this.dictionaryPath = fileCreate();
-        this.bufferedWriter = Files.newBufferedWriter(dictionaryPath);
+        this.DICTIONARY = fileCreate();
     }
 
-    public Path getDictionaryPath() {
-        return dictionaryPath;
-    }
-    public BufferedWriter getBufferedWriter() {
-        return bufferedWriter;
+    public File getDictionary() {
+        return DICTIONARY;
     }
 
     private void dirCreate() {
@@ -41,13 +38,14 @@ public class Dictionary {
         }
     }
 
-    private Path fileCreate() {
+    private File fileCreate() {
         String index = "";
         int count = 2;
         while (true) {
             try {
                 Path filePath = Files.createFile(Paths.get(dirPath, fileName + index + fileExtension));
-                return filePath;
+                File dictionary = filePath.toFile();
+                return dictionary;
             } catch (FileAlreadyExistsException e) {
                 index = " " + count++;
             } catch (IOException e) {
@@ -55,9 +53,4 @@ public class Dictionary {
             }
         }
     }
-    
-    public void append (String s) throws IOException {
-        bufferedWriter.append(s);
-    }
-
 }

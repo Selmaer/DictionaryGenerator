@@ -1,6 +1,7 @@
 package dictionarygenerator;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.Properties;
 
 public class PropertiesFile {
@@ -13,10 +14,13 @@ public class PropertiesFile {
         prop.put("DEFAULT_FILE_NAME", "New Dictionary");
         prop.put("DEFAULT_FILE_EXTENSION", ".txt");
         prop.put("DEFAULT_DIRECTORY_PATH", "C:\\"/*"shell:UsersFilesFolder\\Desktop"*/);
+        prop.put("DEFAULT_PASSWORDS_PER_MILLISECOND", "30");
 
         prop.put("FILE_NAME", "");
         prop.put("FILE_EXTENSION", "");
         prop.put("DIRECTORY_PATH", "");
+
+        prop.put("PASSWORDS_PER_MILLISECOND", "");
 
         try {
             cfg.createNewFile();
@@ -80,7 +84,16 @@ public class PropertiesFile {
     public static String getDirectoryPath() {
         return getValue("DIRECTORY_PATH");
     }
+    public static String getPasswordsPerMillisecond() {
+        return getValue("PASSWORDS_PER_MILLISECOND");
+    }
 
+    public static void setPasswordsPerMillisecond(long newValue) {
+        String oldValue = getPasswordsPerMillisecond();
+        long average = (newValue + Long.valueOf(oldValue)) / 2;
+        String averageValue = String.valueOf(average);
+        setValue("PASSWORDS_PER_MILLISECOND", averageValue);
+    }
     public static void setFileName(String value) {
         setValue("FILE_NAME", value);
     }

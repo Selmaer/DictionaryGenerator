@@ -17,7 +17,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
-//        Controller.dictExt.setValue(FXCollections.observableArrayList(".txt", ".dic"));
         primaryStage.setTitle("Dictionary Generator");
         Scene scene = new Scene(root, 700, 370);
         primaryStage.setScene(scene);

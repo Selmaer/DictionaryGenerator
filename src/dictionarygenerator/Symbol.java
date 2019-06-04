@@ -19,24 +19,25 @@ public class Symbol {
         FIXED, PARAMETRED;
     }
 
-    public Symbol(String code) {
+    public Symbol(String mask) {
         String comb = "";
-        if (code.contains("^D")) {
+        if (mask.contains("^D")) {
             comb = comb + DIGITS;
-        } if (code.contains("^L")) {
+        } if (mask.contains("^L")) {
             comb = comb + LOWER;
-        } if (code.contains("^U")) {
+        } if (mask.contains("^U")) {
             comb = comb + UPPER;
-        } if (code.contains("^P")) {
+        } if (mask.contains("^P")) {
             comb = comb + PUNCTUATION;
         } 
         if (comb.isEmpty()) {
             KIND = FIXED;
-            COMBINATION = code;
+            COMBINATION = mask;
         } else {
             KIND = PARAMETRED;
             COMBINATION = comb;
         }
+
     }
     public String getNext() {
         if (KIND == FIXED) {
@@ -54,5 +55,8 @@ public class Symbol {
             charCount = 0;
             return false;
         }
+    }
+    public int getLength() {
+        return COMBINATION.length();
     }
 }

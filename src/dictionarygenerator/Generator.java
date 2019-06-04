@@ -1,8 +1,9 @@
 package dictionarygenerator;
 
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class Generator {
@@ -10,13 +11,16 @@ public class Generator {
     private Password password;
     private final int LENGTH;
     private final BufferedWriter WRITER;
+    private final long PASSWORDS_PER_PERCENT;
+    private long passwordCounter = 0;
 
-    public Generator(PasswordCombination passwordCombination, BufferedWriter bufferedWriter) {
+    public Generator(PasswordCombination passwordCombination, File dictionary) throws IOException {
         password = new Password();
         LIST = passwordCombination.getSymbolList();
         LENGTH = LIST.size();
-        WRITER = bufferedWriter;
-    }
+        WRITER = new BufferedWriter(new FileWriter(dictionary));
+        PASSWORDS_PER_PERCENT = passwordCombination.getCombinationsNumber() / 100;
+}
 
     public void generate() {
         generate(0);
@@ -32,21 +36,24 @@ public class Generator {
         } else if (i == LENGTH - 1) {
             while (LIST.get(i).hasNext()) {
                 String s = LIST.get(i).getNext();
-                /////////////////////////////////
                 try {
-                    WRITER.write(password + s +"\n");
+                    WRITER.write(password + s);
                     WRITER.newLine();
                     WRITER.flush();
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-//                System.out.println(password + s);
-                /////////////////////////////////
             }
             password.removeLastSymbol();
         }
     }
-    
+    private void passwordCount() {
+        passwordCounter++;
+        if (passwordCounter >= PASSWORDS_PER_PERCENT) {
+
+        }
+
+    }
     
 }

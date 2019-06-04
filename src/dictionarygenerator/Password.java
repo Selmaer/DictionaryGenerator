@@ -11,11 +11,11 @@ public class Password {
          LIST = new LinkedList<>();
          s = new StringBuilder();
     }
-    public void add(String s) {
+    public void addSymbol(String s) {
         LIST.add(s);
     }
     
-    public void removeLast() {
+    public void removeLastSymbol() {
         try {
             LIST.removeLast();
         } catch (NoSuchElementException e) {}
