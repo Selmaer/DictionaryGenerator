@@ -4,16 +4,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Calculator {
 
-    public static String calculateCombinationsNumber(String passwordMask) {
-        PasswordCombination pc = new PasswordCombination(passwordMask);
-        long combinationsNumber = pc.getCombinationsNumber();
-        return splitOnThousands(combinationsNumber);
-    }
-
     public static String splitOnThousands(long number) {
         StringBuilder s = new StringBuilder ();
         s.append(number);
-        System.out.println(s.length());
         for (int i = s.length() - 3; i > 0; i-=3) {
             s.insert(i, " ");
         }
@@ -26,7 +19,6 @@ public class Calculator {
                 TimeUnit.MILLISECONDS.toSeconds(ms) -
                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(ms))
         );
-
     }
 
     public static String calculateApproxTime (long combinationNumber) {

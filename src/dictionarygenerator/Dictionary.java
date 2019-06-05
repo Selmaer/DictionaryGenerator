@@ -16,7 +16,6 @@ public class Dictionary {
 
     private final File DICTIONARY;
 
-    
     public Dictionary() throws IOException{
         this.fileName = PropertiesFile.getFileName();
         this.fileExtension = PropertiesFile.getFileExtension();

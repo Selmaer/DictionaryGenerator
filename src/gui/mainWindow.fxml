@@ -15,7 +15,7 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.collections.ObservableList?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="700.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="700.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
    <children>
       <Text layoutY="-2.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
@@ -58,22 +58,17 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="calculate_button" focusTraversable="false" layoutX="356.0" layoutY="230.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="322.0" text="Calculate resourses">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
       <Button fx:id="splitter_button" focusTraversable="false" layoutX="22.0" layoutY="230.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="322.0" text="Separate symbols">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="generate_button" defaultButton="true" layoutX="22.0" layoutY="285.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="656.0" text="GENERATE">
+      <Button fx:id="generate_button" defaultButton="true" layoutX="356.0" layoutY="230.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="322.0" text="GENERATE">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <ProgressBar fx:id="progress_bar" layoutX="22.0" layoutY="343.0" prefHeight="22.0" prefWidth="656.0" progress="0.0" />
+      <ProgressBar fx:id="progress_bar" layoutX="22.0" layoutY="284.0" prefHeight="22.0" prefWidth="656.0" progress="0.0" />
       <TextField fx:id="dict_path_field" focusTraversable="false" layoutX="356.0" layoutY="21.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="292.0" promptText="Dictionary path">
          <font>
             <Font size="14.0" />
@@ -87,5 +82,10 @@
             </FXCollections>
          </items>
       </ChoiceBox>
+      <Button fx:id="stop_button" defaultButton="true" focusTraversable="false" layoutX="356.0" layoutY="230.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="322.0" text="STOP" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

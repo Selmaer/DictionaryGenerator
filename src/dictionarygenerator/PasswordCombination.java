@@ -13,9 +13,6 @@ public class PasswordCombination {
         this.COMBINATIONS_NUMBER = combinationsNumberCounter();
     }
 
-    public String getPasswordMask() {
-        return PASSWORD_MASK;
-    }
     public ArrayList<Symbol> getSymbolList() {
         return SYMBOL_LIST;
     }
@@ -31,7 +28,7 @@ public class PasswordCombination {
         return comb;
     }
     private ArrayList<Symbol> generateSymbolList(String passwordMask) {
-        String[] maskArray = passwordMask.split(" //| ");
+        String[] maskArray = passwordMask.split(" \\| ");
         ArrayList<Symbol> symbolList = new ArrayList<>(maskArray.length);
         for(String mask : maskArray) {
             Symbol s = new Symbol(mask);

@@ -13,7 +13,7 @@ public class PropertiesFile {
 
         prop.put("DEFAULT_FILE_NAME", "New Dictionary");
         prop.put("DEFAULT_FILE_EXTENSION", ".txt");
-        prop.put("DEFAULT_DIRECTORY_PATH", "C:\\"/*"shell:UsersFilesFolder\\Desktop"*/);
+        prop.put("DEFAULT_DIRECTORY_PATH", "");
         prop.put("DEFAULT_PASSWORDS_PER_MILLISECOND", "30");
 
         prop.put("FILE_NAME", "");
