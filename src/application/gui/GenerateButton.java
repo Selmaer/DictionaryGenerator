@@ -1,8 +1,5 @@
 package application.gui;
 
-import application.dictionarygenerator.Calculator;
-import application.dictionarygenerator.Dictionary;
-import application.dictionarygenerator.Generator;
 import application.dictionarygenerator.*;
 import application.gui.Dialogs.ConfirmationDialog;
 import application.gui.Dialogs.WarningDialog;
@@ -23,37 +20,34 @@ public class GenerateButton {
         stopButton = sb;
     }
 
-    public static void generate (String passwordMask) {
-        if(passwordMask.isEmpty()) {
-            WarningDialog.show("Password mask is empty.");
-        } else {
-            try {
-                PasswordCombination pc = new PasswordCombination(passwordMask);
-                long combNumber = pc.getCombinationsNumber();
+    public static void generate(String passwordMask) {
+        try {
+            PasswordCombination pc = new PasswordCombination(passwordMask);
+            long combNumber = pc.getCombinationsNumber();
 
-                String combNumberReadable = Calculator.splitOnThousands(combNumber);
-                String confMessage = "There will be " + combNumberReadable + " passwords in your dictionary.\n" +
-                        "It will take approximately " + (Calculator.calculateApproxTime(combNumber)) + " to create it.\n" +
-                        "Do you want to continue?";
-                if (ConfirmationDialog.show(confMessage)) {
-                    Dictionary dict = new Dictionary();
-                    Generator generator = new Generator(pc, dict.getDictionary());
-                    generator.setButtons(bar, generateButton, stopButton);
-                    generator.start();
+            String combNumberReadable = Calculator.splitOnThousands(combNumber);
+            String confMessage = "There will be " + combNumberReadable + " passwords in your dictionary.\n" +
+                    "It will take approximately " + (Calculator.calculateApproxTime(combNumber)) + " to create it.\n" +
+                    "Do you want to continue?";
+            if (ConfirmationDialog.show(confMessage)) {
+                Dictionary dict = new Dictionary();
+                Generator generator = new Generator(pc, dict.getDictionary());
+                generator.setButtons(bar, generateButton, stopButton);
+                generator.start();
 
-                    stopButton.setOnAction(event -> {
-                        String message = "Are you sure you want to abort the process?";
-                        if (ConfirmationDialog.show(message)) {
-                            generator.stopRunning();
-                        }
-                    });
-                }
-
-            } catch (InvalidPathException e) {
-                WarningDialog.show("Dictionary path is invalid.");
-            } catch (IOException e) {
-                e.printStackTrace();
+                stopButton.setOnAction(event -> {
+                    String message = "Are you sure you want to abort the process?";
+                    if (ConfirmationDialog.show(message)) {
+                        generator.stopRunning();
+                    }
+                });
             }
+
+        } catch (InvalidPathException e) {
+            WarningDialog.show("Dictionary path is invalid.");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
+

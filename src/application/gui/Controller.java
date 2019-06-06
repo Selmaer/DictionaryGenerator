@@ -3,6 +3,7 @@ package application.gui;
 import application.Main;
 import application.dictionarygenerator.PropertiesFile;
 import application.gui.Dialogs.InformationDialog;
+import application.gui.Dialogs.WarningDialog;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -76,7 +77,14 @@ public class Controller {
             dict_path_field.selectPositionCaret(dict_path_field.getLength());
         });
 
-        hint_button.setOnAction(event -> InformationDialog.show("I have a great message for you!"));
+        hint_button.setOnAction(event -> InformationDialog.show(
+                "Password mask represents passwords you want to generate.\n" +
+                "Choose symbol masks to construct your password mask.\n" +
+                "'^D' represents digits, '^P' represents punctuation symbols\n" +
+                "'^U' represents upper and '^L' - lowercase letters.\n" +
+                "Use '|' to split your password symbols.\n" +
+                "Also you can type any combination instead of symbol mask\n" +
+                "and it will remain as it is in all passwords."));
 
         digits_button.setOnAction(event -> {
             pass_mask_field.setText(pass_mask_field.getText() + "^D");
@@ -104,22 +112,26 @@ public class Controller {
             });
 
         generate_button.setOnAction(event -> {
-            if (!dict_name_field.getText().isEmpty()) {
-                PropertiesFile.setFileName(dict_name_field.getText());
-            }
+            String passwordMask = pass_mask_field.getText();
+            if(passwordMask.isEmpty()) {
+                WarningDialog.show("Password mask is empty.");
+            } else {
+                if (!dict_name_field.getText().isEmpty()) {
+                    PropertiesFile.setFileName(dict_name_field.getText());
+                }
+                if (!dict_path_field.getText().isEmpty()) {
+                    PropertiesFile.setDirectoryPath(dict_path_field.getText());
+                } else if (PropertiesFile.getDirectoryPath().equals("")) {
+                    String dictionaryPath = BrowseButton.choosePath(Main.getStage());
+                    PropertiesFile.setDirectoryPath(dictionaryPath);
+                    dict_path_field.setText(PropertiesFile.getDirectoryPath());
+                    dict_path_field.selectPositionCaret(dict_path_field.getLength());
+                }
+                if (!PropertiesFile.getDirectoryPath().isEmpty()) {
 
-            if (!dict_path_field.getText().isEmpty()) {
-                PropertiesFile.setDirectoryPath(dict_path_field.getText());
-            } else if(PropertiesFile.getDirectoryPath().equals("")){
-                String dictionaryPath = BrowseButton.choosePath(Main.getStage());
-                PropertiesFile.setDirectoryPath(dictionaryPath);
-                dict_path_field.setText(PropertiesFile.getDirectoryPath());
-                dict_path_field.selectPositionCaret(dict_path_field.getLength());
-            }
-            if (!PropertiesFile.getDirectoryPath().isEmpty()) {
-                String passwordMask = pass_mask_field.getText();
-                GenerateButton.setButtons(progress_bar, generate_button, stop_button);
-                GenerateButton.generate(passwordMask);
+                    GenerateButton.setButtons(progress_bar, generate_button, stop_button);
+                    GenerateButton.generate(passwordMask);
+                }
             }
         });
 
