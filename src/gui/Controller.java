@@ -149,9 +149,7 @@ public class Controller {
                 GenerateButton.generate(passwordMask);
             }
         });
-        stop_button.setOnAction(event -> {
 
-        });
         //TODO there is a glitch in extension chooser
         dictExt.setOnHidden(event -> {
             PropertiesFile.setFileExtension(dictExt.getValue().toString());

@@ -11,10 +11,12 @@ public class InformationDialog {
         alert.setHeaderText(null);
         alert.setContentText(message);
 
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("file:res/img/icon.png"));
+
         alert.showAndWait();
 
-//        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-//        stage.getIcons().add(new Image("file:icon.png"));
+
     }
 }
 

@@ -50,7 +50,12 @@ public class Generator extends Thread {
         generateButton.setVisible(false);
         stopButton.setVisible(true);
 
-        generate(0);
+        try {
+            generate(0);
+            WRITER.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         bar.setProgress(0);
         stopButton.setVisible(false);
@@ -65,7 +70,7 @@ public class Generator extends Thread {
         showDialog(timeSpentMs);
     }
     
-    private void generate (int i) {
+    private void generate (int i) throws IOException {
         if(flag) {
             if (i < LENGTH - 1) {
                 while (LIST.get(i).hasNext()) {
@@ -76,15 +81,10 @@ public class Generator extends Thread {
             } else if (i == LENGTH - 1) {
                 while (LIST.get(i).hasNext()) {
                     String s = LIST.get(i).getNext();
-                    try {
-                        WRITER.write(password + s);
-                        WRITER.newLine();
-                        WRITER.flush();
-                        passwordCount();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    WRITER.write(password + s);
+                    WRITER.newLine();
+                    WRITER.flush();
+                    passwordCount();
                 }
                 password.removeLastSymbol();
             }

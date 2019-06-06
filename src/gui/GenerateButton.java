@@ -36,7 +36,13 @@ public class GenerateButton {
                     Generator generator = new Generator(pc, dict.getDictionary());
                     generator.setButtons(bar, generateButton, stopButton);
                     generator.start();
-                    stopButton.setOnAction(event -> generator.stopRunning());
+
+                    stopButton.setOnAction(event -> {
+                        String message = "Are you sure you want to abort the process?";
+                        if (ConfirmationDialog.show(message)) {
+                            generator.stopRunning();
+                        }
+                    });
                 }
 
             } catch (InvalidPathException e) {

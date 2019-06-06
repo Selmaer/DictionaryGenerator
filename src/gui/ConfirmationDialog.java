@@ -2,21 +2,22 @@ package gui;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 import java.util.Optional;
 
-public class ConfirmationDialog {
-    public static boolean show (String text) {
+class ConfirmationDialog {
+    static boolean show(String text) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(null);
         alert.setHeaderText(null);
         alert.setContentText(text);
 
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("file:res/img/icon.png"));
+
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            return true; // ... user chose OK
-        } else {
-            return false; // ... user chose CANCEL or closed the dialog
-        }
+        return result.get() == ButtonType.OK;
     }
 }

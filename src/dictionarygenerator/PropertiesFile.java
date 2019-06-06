@@ -1,7 +1,6 @@
 package dictionarygenerator;
 
 import java.io.*;
-import java.nio.file.Path;
 import java.util.Properties;
 
 public class PropertiesFile {
@@ -105,6 +104,4 @@ public class PropertiesFile {
     public static void setDirectoryPath(String value) {
         setValue("DIRECTORY_PATH", value);
     }
-
-
 }

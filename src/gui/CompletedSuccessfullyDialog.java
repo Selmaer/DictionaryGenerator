@@ -2,6 +2,8 @@ package gui;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +20,9 @@ public class CompletedSuccessfullyDialog {
         ButtonType close = new ButtonType("Close");
 
         alert.getButtonTypes().setAll(open, close);
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("file:res/img/icon.png"));
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == open) {

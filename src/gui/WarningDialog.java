@@ -1,6 +1,8 @@
 package gui;
 
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 public class WarningDialog {
     public static void show(String message) {
@@ -8,6 +10,9 @@ public class WarningDialog {
         alert.setTitle(null);
         alert.setHeaderText(null);
         alert.setContentText(message);
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("file:res/img/icon.png"));
 
         alert.showAndWait();
     }
