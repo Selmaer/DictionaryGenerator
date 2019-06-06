@@ -19,7 +19,8 @@ public class Symbol {
         FIXED, PARAMETRED
     }
 
-    public Symbol(String mask) {
+    public Symbol(String mask)
+    {
         String comb = "";
         if (mask.contains("^D")) {
             comb = comb + DIGITS;
@@ -37,7 +38,6 @@ public class Symbol {
             KIND = PARAMETRED;
             COMBINATION = comb;
         }
-
     }
     public String getNext() {
         if (KIND == FIXED) {
@@ -57,6 +57,10 @@ public class Symbol {
         }
     }
     public int getLength() {
-        return COMBINATION.length();
+        if (KIND == FIXED) {
+            return 1;
+        } else {
+            return COMBINATION.length();
+        }
     }
 }

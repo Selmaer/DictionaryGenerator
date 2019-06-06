@@ -18,7 +18,7 @@ public class CompletedSuccessfullyDialog {
         alert.setContentText(text);
 
         ButtonType open = new ButtonType("Open");
-        ButtonType close = new ButtonType("Close");
+        ButtonType close = new ButtonType("OK");
 
         alert.getButtonTypes().setAll(open, close);
 
