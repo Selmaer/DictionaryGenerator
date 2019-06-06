@@ -1,7 +1,7 @@
-package dictionarygenerator;
+package application.dictionarygenerator;
 
-import static dictionarygenerator.Symbol.SymbolKind.FIXED;
-import static dictionarygenerator.Symbol.SymbolKind.PARAMETRED;
+import static application.dictionarygenerator.Symbol.SymbolKind.FIXED;
+import static application.dictionarygenerator.Symbol.SymbolKind.PARAMETRED;
 
 public class Symbol {
 
@@ -16,7 +16,7 @@ public class Symbol {
     private int charCount = 0;
     
     enum SymbolKind {
-        FIXED, PARAMETRED;
+        FIXED, PARAMETRED
     }
 
     public Symbol(String mask) {

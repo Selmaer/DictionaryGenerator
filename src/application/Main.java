@@ -1,5 +1,6 @@
-package gui;
+package application;
 
+import application.dictionarygenerator.PropertiesFile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,16 +11,22 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private static Stage primaryStage;
 
+    public static Stage getStage() {
+        return primaryStage;
+    }
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/mainWindow.fxml"));
 
         this.primaryStage = primaryStage;
 
         Parent root = loader.load();
 
-        primaryStage.getIcons().add(new Image ("file:res/img/icon.png"));
-//        primaryStage.getIcons().add(new Image (Main.class.getResourceAsStream("file:res/img/icon.png")));
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("icon/icon.png")));
 
         primaryStage.setTitle("Dictionary Generator");
         Scene scene = new Scene(root, 700, 310);
@@ -27,13 +34,10 @@ public class Main extends Application {
         primaryStage.setResizable(false);
 
         primaryStage.show();
-    }
 
-    static Stage getStage() {
-        return primaryStage;
-    }
 
-    public static void main(String[] args) {
-        launch(args);
+        primaryStage.setOnCloseRequest(event -> {
+            PropertiesFile.setFileExtension(".txt");
+        });
     }
 }

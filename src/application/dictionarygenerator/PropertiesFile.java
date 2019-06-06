@@ -1,4 +1,4 @@
-package dictionarygenerator;
+package application.dictionarygenerator;
 
 import java.io.*;
 import java.util.Properties;

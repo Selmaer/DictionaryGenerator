@@ -1,6 +1,6 @@
-package gui;
+package application.gui;
 
-import dictionarygenerator.PropertiesFile;
+import application.dictionarygenerator.PropertiesFile;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 

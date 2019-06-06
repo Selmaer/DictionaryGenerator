@@ -1,6 +1,5 @@
-package dictionarygenerator;
+package application.dictionarygenerator;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -16,7 +15,7 @@ public class Dictionary {
 
     private final File DICTIONARY;
 
-    public Dictionary() throws IOException{
+    public Dictionary() {
         this.fileName = PropertiesFile.getFileName();
         this.fileExtension = PropertiesFile.getFileExtension();
         this.dirPath = PropertiesFile.getDirectoryPath();
@@ -43,8 +42,7 @@ public class Dictionary {
         while (true) {
             try {
                 Path filePath = Files.createFile(Paths.get(dirPath, fileName + index + fileExtension));
-                File dictionary = filePath.toFile();
-                return dictionary;
+                return filePath.toFile();
             } catch (FileAlreadyExistsException e) {
                 index = " " + count++;
             } catch (IOException e) {

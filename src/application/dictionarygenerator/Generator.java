@@ -1,8 +1,7 @@
-package dictionarygenerator;
+package application.dictionarygenerator;
 
-import gui.CompletedSuccessfullyDialog;
-import gui.InformationDialog;
-import gui.WarningDialog;
+import application.gui.Dialogs.CompletedSuccessfullyDialog;
+import application.gui.Dialogs.WarningDialog;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
@@ -100,17 +99,15 @@ public class Generator extends Thread {
     }
 
     private void showDialog(long timeSpentMs) {
-        Platform.runLater(new Runnable() {
-            @Override public void run() {
-                if (flag) {
-                    String text = "Dictionary created successfully in " +
-                            (Calculator.msToNormalTime(timeSpentMs));
-                    CompletedSuccessfullyDialog.show(text, DICTIONARY);
-                } else {
-                    WarningDialog.show("Dictionary creation was interrupted on " +
-                            (Calculator.msToNormalTime(timeSpentMs)));
-                    DICTIONARY.delete();
-                }
+        Platform.runLater(() -> {
+            if (flag) {
+                String text = "Dictionary created successfully in " +
+                        (Calculator.msToNormalTime(timeSpentMs));
+                CompletedSuccessfullyDialog.show(text, DICTIONARY);
+            } else {
+                WarningDialog.show("Dictionary creation was interrupted on " +
+                        (Calculator.msToNormalTime(timeSpentMs)));
+                DICTIONARY.delete();
             }
         });
     }

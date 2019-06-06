@@ -1,6 +1,11 @@
-package gui;
+package application.gui;
 
-import dictionarygenerator.*;
+import application.dictionarygenerator.Calculator;
+import application.dictionarygenerator.Dictionary;
+import application.dictionarygenerator.Generator;
+import application.dictionarygenerator.*;
+import application.gui.Dialogs.ConfirmationDialog;
+import application.gui.Dialogs.WarningDialog;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 
@@ -23,7 +28,6 @@ public class GenerateButton {
             WarningDialog.show("Password mask is empty.");
         } else {
             try {
-
                 PasswordCombination pc = new PasswordCombination(passwordMask);
                 long combNumber = pc.getCombinationsNumber();
 

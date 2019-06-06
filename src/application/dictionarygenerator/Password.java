@@ -1,4 +1,4 @@
-package dictionarygenerator;
+package application.dictionarygenerator;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;

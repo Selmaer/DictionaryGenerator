@@ -1,14 +1,12 @@
-package dictionarygenerator;
+package application.dictionarygenerator;
 
 import java.util.ArrayList;
 
 public class PasswordCombination {
-    private final String PASSWORD_MASK;
     private final ArrayList<Symbol> SYMBOL_LIST;
     private final long COMBINATIONS_NUMBER;
 
     public PasswordCombination (String passwordMask) {
-        this.PASSWORD_MASK = passwordMask;
         this.SYMBOL_LIST = generateSymbolList(passwordMask);
         this.COMBINATIONS_NUMBER = combinationsNumberCounter();
     }
@@ -28,7 +26,7 @@ public class PasswordCombination {
         return comb;
     }
     private ArrayList<Symbol> generateSymbolList(String passwordMask) {
-        String[] maskArray = passwordMask.split(" \\| ");
+        String[] maskArray = passwordMask.split("\\|");
         ArrayList<Symbol> symbolList = new ArrayList<>(maskArray.length);
         for(String mask : maskArray) {
             Symbol s = new Symbol(mask);

@@ -1,5 +1,6 @@
-package gui;
+package application.gui.Dialogs;
 
+import application.Main;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
@@ -22,7 +23,7 @@ public class CompletedSuccessfullyDialog {
         alert.getButtonTypes().setAll(open, close);
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("file:res/img/icon.png"));
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("icon/icon.png")));
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == open) {
@@ -31,7 +32,6 @@ public class CompletedSuccessfullyDialog {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
         }
     }
 }

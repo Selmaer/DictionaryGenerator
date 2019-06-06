@@ -1,40 +1,18 @@
-package gui;
+package application.gui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import dictionarygenerator.Calculator;
-import dictionarygenerator.PropertiesFile;
-import javafx.beans.property.BooleanProperty;
+import application.Main;
+import application.dictionarygenerator.PropertiesFile;
+import application.gui.Dialogs.InformationDialog;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class Controller {
-   // public static final ObservableList<String> strings = FXCollections.observableArrayList(".txt", ".dic");
-    private static Stage primaryStage;
 
-//    public static void setPrimaryStage(Stage stage) {
-//        primaryStage = stage;
-//    }
-    public void setProgress() {
-        progress_bar.setProgress(0.5);
-    }
-    public Button getGenerateButton() {
-        return generate_button;
-    }
-
-    public Button getStopButton() {
-        return stop_button;
-    }
     @FXML
     private TextField pass_mask_field;
-
-    @FXML
-    private ResourceBundle resources;
 
     @FXML
     private TextField dict_name_field;
@@ -44,9 +22,6 @@ public class Controller {
 
     @FXML
     private ChoiceBox dictExt;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TextField dict_path_field;
@@ -101,9 +76,7 @@ public class Controller {
             dict_path_field.selectPositionCaret(dict_path_field.getLength());
         });
 
-        hint_button.setOnAction(event -> {
-            InformationDialog.show("I have a great message for you!");
-        });
+        hint_button.setOnAction(event -> InformationDialog.show("I have a great message for you!"));
 
         digits_button.setOnAction(event -> {
             pass_mask_field.setText(pass_mask_field.getText() + "^D");
@@ -126,7 +99,7 @@ public class Controller {
             });
 
         splitter_button.setOnAction(event -> {
-            pass_mask_field.setText(pass_mask_field.getText() + " | ");
+            pass_mask_field.setText(pass_mask_field.getText() + "|");
             pass_mask_field.positionCaret(pass_mask_field.getText().length());
             });
 
@@ -150,9 +123,7 @@ public class Controller {
             }
         });
 
-        //TODO there is a glitch in extension chooser
-        dictExt.setOnHidden(event -> {
-            PropertiesFile.setFileExtension(dictExt.getValue().toString());
-        });
+        dictExt.setOnAction(event ->
+                PropertiesFile.setFileExtension(dictExt.getValue().toString()));
     }
 }

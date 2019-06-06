@@ -1,4 +1,4 @@
-package dictionarygenerator;
+package application.dictionarygenerator;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +13,7 @@ public class Calculator {
         return s.toString();
     }
 
-    public static String msToNormalTime(long ms) {
+    static String msToNormalTime(long ms) {
         return String.format("%02d min, %02d sec",
                 TimeUnit.MILLISECONDS.toMinutes(ms),
                 TimeUnit.MILLISECONDS.toSeconds(ms) -
